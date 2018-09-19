@@ -575,5 +575,14 @@
     "baseColumnName": "Flag for review",
     "expression": "grel:\"Flag: \" + facetCount(\"Flag\", \"value\", \"Flag for review\") + \"; \" + \"OK: \" + facetCount(\"OK\", \"value\", \"Flag for review\") + \"; \" + \"Null: \" + facetCount(null, \"value\", \"Flag for review\")",
     "onError": "set-to-blank"
+  },
+  {
+    "op": "core/blank-down",
+    "description": "Blank down cells in column Count",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "Count"
   }
 ]

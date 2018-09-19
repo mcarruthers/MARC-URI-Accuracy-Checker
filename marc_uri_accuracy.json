@@ -44,7 +44,8 @@
     "baseColumnName": "LCCN",
     "urlExpression": "grel:\"http://viaf.org/viaf/lccn/\" + value",
     "onError": "set-to-blank",
-    "delay": 300
+    "delay": 300,
+    "cacheResponses": false
   },
   {
     "op": "core/text-transform",
@@ -144,7 +145,8 @@
     "baseColumnName": "subfield 1",
     "urlExpression": "grel:value + \"/viaf.xml\"",
     "onError": "set-to-blank",
-    "delay": 300
+    "delay": 300,
+    "cacheResponses": false
   },
   {
     "op": "core/column-addition",
@@ -560,5 +562,18 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Count at index 9 based on column Flag for review using expression grel:\"Flag: \" + facetCount(\"Flag\", \"value\", \"Flag for review\") + \"; \" + \"OK: \" + facetCount(\"OK\", \"value\", \"Flag for review\") + \"; \" + \"Null: \" + facetCount(null, \"value\", \"Flag for review\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "Count",
+    "columnInsertIndex": 9,
+    "baseColumnName": "Flag for review",
+    "expression": "grel:\"Flag: \" + facetCount(\"Flag\", \"value\", \"Flag for review\") + \"; \" + \"OK: \" + facetCount(\"OK\", \"value\", \"Flag for review\") + \"; \" + \"Null: \" + facetCount(null, \"value\", \"Flag for review\")",
+    "onError": "set-to-blank"
   }
 ]
